@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Edgar
+ * @author Ed
  */
 public class Ex1 {
     private static final int numberOfTasks = 8;

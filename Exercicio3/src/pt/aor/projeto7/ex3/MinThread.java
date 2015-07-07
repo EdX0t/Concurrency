@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package aor.projeto7.ex3;
+package pt.aor.projeto7.ex3;
 
 import java.util.concurrent.Callable;
 
