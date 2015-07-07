@@ -69,7 +69,7 @@ public class Ex3 {
         Future minimum = executors.submit(minCallable);
         Future maximum = executors.submit(maxCallable);
 
-        //print max and min from Future objects  
+        //get max and min from Future objects  
         try {
             max = (Double) maximum.get();
             min = (Double) minimum.get();
