@@ -9,7 +9,7 @@
  versus the number of doubles in the computation. NOTE: you must include the time to
  launch the tasks in the parallel version time.
  */
-package aor.projeto7.ex3;
+package pt.aor.projeto7.ex3;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -21,57 +21,59 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Edgar
+ * @author Ed
  */
 public class Ex3 {
+
     private static final int numberOfThreads = 2;
     private static int numberOfDoubles;
     private static double[] listOfDoubles;
+
     public static void main(String[] args) {
-  
-            numberOfDoubles = Integer.valueOf(args[0]);
-            listOfDoubles = randomizeDoubles(numberOfDoubles);
-            //print average from array
-            System.out.println("Average: "+ calculateAverage(listOfDoubles));
-            
-            //initializa fixed thread pool with executor service
-            ExecutorService executors = Executors.newFixedThreadPool(numberOfThreads);
-            
-            //initialize callables
-            Callable minCallable = new MinThread(listOfDoubles);
-            Callable maxCallable = new MaxThread(listOfDoubles);
-            //submit callables
-            Future minimum = executors.submit(minCallable);
-            Future maximum = executors.submit(maxCallable);
-            
-            //print max and min from Future objects  
+
+        numberOfDoubles = Integer.valueOf(args[0]);
+        listOfDoubles = randomizeDoubles(numberOfDoubles);
+        //print average from array
+        System.out.println("Average: " + calculateAverage(listOfDoubles));
+
+        //initializa fixed thread pool with executor service
+        ExecutorService executors = Executors.newFixedThreadPool(numberOfThreads);
+
+        //initialize callables
+        Callable minCallable = new MinThread(listOfDoubles);
+        Callable maxCallable = new MaxThread(listOfDoubles);
+        //submit callables
+        Future minimum = executors.submit(minCallable);
+        Future maximum = executors.submit(maxCallable);
+
+        //print max and min from Future objects  
         try {
-            System.out.println("Maximum: "+maximum.get());
-            System.out.println("Minimum: "+minimum.get());
+            System.out.println("Maximum: " + maximum.get());
+            System.out.println("Minimum: " + minimum.get());
         } catch (InterruptedException | ExecutionException ex) {
             Logger.getLogger(Ex3.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     private static double[] randomizeDoubles(int numberOfDoubles) {
-     
+
         double[] list = new double[numberOfDoubles];
-        for(int i=0; i<list.length; i++){
-        list[i] = Math.random()*(100)+1;
+        for (int i = 0; i < list.length; i++) {
+            list[i] = Math.random() * (100) + 1;
         }
         System.out.println("Random numbers");
-        for(int i=0; i<list.length; i++){
-        System.out.println(list[i]+" ");
+        for (int i = 0; i < list.length; i++) {
+            System.out.println(list[i] + " ");
         }
         return list;
     }
 
     private static double calculateAverage(double[] listOfDoubles) {
         double soma = 0;
-        for(int i=0; i<listOfDoubles.length; i++){
-            soma+=listOfDoubles[i];
-      }
-        return (soma/listOfDoubles.length);
+        for (int i = 0; i < listOfDoubles.length; i++) {
+            soma += listOfDoubles[i];
+        }
+        return (soma / listOfDoubles.length);
     }
 }
