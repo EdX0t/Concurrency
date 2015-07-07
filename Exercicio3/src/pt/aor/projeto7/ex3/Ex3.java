@@ -16,7 +16,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -113,7 +112,7 @@ public class Ex3 {
                 max = listOfDoubles[i];
             }
         }
-        System.out.println("Minimum: " + max);
+        System.out.println("Maximum: " + max);
 
         sequentialTime = (System.nanoTime() - sequentialStartTime)/1000;
     }

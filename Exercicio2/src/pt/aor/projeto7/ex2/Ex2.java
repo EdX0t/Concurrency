@@ -25,7 +25,6 @@ public class Ex2 {
                 semaphores[i] = new Semaphore(0);
             }
         }
-
         //cria threads e passa semaforo
         for (int i = 0; i < numberOfThreads; i++) {
             ThreadExercicio2 thread = new ThreadExercicio2(semaphores, i);
