@@ -6,7 +6,7 @@ package pt.aor.projeto7.ex3;
  */
 public class Ex3Sequential {
 
-    private static final int numberOfDoubles = 500000;
+    private static int numberOfDoubles;
     private static double[] listOfDoubles;
     private static long zeroTime, splitTime, sequentialTime;
 
@@ -15,7 +15,7 @@ public class Ex3Sequential {
         zeroTime = System.nanoTime();
         
         //creates the double array
-//        numberOfDoubles = 500;
+        numberOfDoubles = Integer.valueOf(args[0]);
         
         //creates instance of helper class
         Helper helper = new Helper();
