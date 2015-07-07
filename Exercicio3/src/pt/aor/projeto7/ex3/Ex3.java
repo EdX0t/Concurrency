@@ -28,48 +28,36 @@ public class Ex3 {
     private static final int numberOfThreads = 2;
     private static int numberOfDoubles;
     private static double[] listOfDoubles;
-    private static long zeroTime, splitTime, sequentialTime, threadedTime;
+    private static double avg, min, max;
+    private static long zeroTime, splitTime, threadedTime;
 
     public static void main(String[] args) {
+
+        //gets initial reference time
         zeroTime = System.nanoTime();
-        //creates the double array
+
+        //parses the argument number
         numberOfDoubles = Integer.valueOf(args[0]);
-        //generates random double values
-        listOfDoubles = randomizeDoubles(numberOfDoubles);
-        splitTime = (System.nanoTime()-zeroTime)/1000;
-        //run threaded program
+
+        //create Helper class instance
+        Helper helper = new Helper();
+
+        //generates random double values array
+        listOfDoubles = helper.createArray(numberOfDoubles);
+
+        //calculate average
+        avg = helper.calculateAverage(listOfDoubles);
+
+        //calculate split time
+        splitTime = (System.nanoTime() - zeroTime) / 1000;
+
+        //run the threads for max and min
         runThreadProgram();
-        //run sequential program
-        runSequentialProgram();
-        //write the time conclusions
-        writeConclusions();
-    }
 
-    private static double[] randomizeDoubles(int numberOfDoubles) {
-
-        double[] list = new double[numberOfDoubles];
-        for (int i = 0; i < list.length; i++) {
-            list[i] = Math.random() * (100) + 1;
-        }
-        System.out.println("Random numbers");
-        for (int i = 0; i < list.length; i++) {
-            System.out.println(list[i] + " ");
-        }
-        return list;
-    }
-
-    private static double calculateAverage(double[] listOfDoubles) {
-        double soma = 0;
-        for (int i = 0; i < listOfDoubles.length; i++) {
-            soma += listOfDoubles[i];
-        }
-        return (soma / listOfDoubles.length);
     }
 
     private static void runThreadProgram() {
         long threadStartTime = System.nanoTime();
-        //calculate and print average from array
-        System.out.println("Average: " + calculateAverage(listOfDoubles));
 
         //initialize fixed thread pool with executor service
         ExecutorService executors = Executors.newFixedThreadPool(numberOfThreads);
@@ -83,46 +71,18 @@ public class Ex3 {
 
         //print max and min from Future objects  
         try {
-            System.out.println("Maximum: " + maximum.get());
-            System.out.println("Minimum: " + minimum.get());
+            max = (Double) maximum.get();
+            min = (Double) minimum.get();
         } catch (InterruptedException | ExecutionException ex) {
             Logger.getLogger(Ex3.class.getName()).log(Level.SEVERE, "Error getting minimum or maximum values.");
         }
         executors.shutdown();
-        threadedTime = (System.nanoTime() - threadStartTime)/1000;
-    
-    }
-
-    private static void runSequentialProgram() {
-        long sequentialStartTime = System.nanoTime();
-        //calculate and print average from array
-        System.out.println("Average: " + calculateAverage(listOfDoubles));
-        //calculate minimum
-        double min = listOfDoubles[0];
-        for (int i = 1; i < listOfDoubles.length; i++) {
-            if (listOfDoubles[i] < min) {
-                min = listOfDoubles[i];
-            }
-        }
-        System.out.println("Minimum: " + min);
-        //calculate maximum
-        double max = listOfDoubles[0];
-        for (int i = 1; i < listOfDoubles.length; i++) {
-            if (listOfDoubles[i] > max) {
-                max = listOfDoubles[i];
-            }
-        }
-        System.out.println("Maximum: " + max);
-
-        sequentialTime = (System.nanoTime() - sequentialStartTime)/1000;
-    }
-
-    private static void writeConclusions() {
-       System.out.println("Building the array time [microseconds]: "+ splitTime);
-       System.out.println("Threaded execution time [microseconds]: " + threadedTime);
-       System.out.println("Sequential execution time [microseconds]: " + sequentialTime);
-       
-       //Threaded time gain percentage for number of doubles argument
-       System.out.println("Overall threaded time gain % : "+(threadedTime/sequentialTime)*100);
+        threadedTime = (System.nanoTime() - threadStartTime) / 1000;
+        
+         //prints results
+        System.out.println("Average: "+avg);
+        System.out.println("Minimum: "+min);
+        System.out.println("Maximum: "+max);
+        System.out.println("Total Threaded execution time: "+threadedTime);
     }
 }
