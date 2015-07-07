@@ -26,7 +26,7 @@ import java.util.logging.Logger;
 public class Ex3 {
 
     private static final int numberOfThreads = 2;
-    private static int numberOfDoubles;
+    private static final int numberOfDoubles = 500000;
     private static double[] listOfDoubles;
     private static double avg, min, max;
     private static long zeroTime, splitTime, threadedTime;
@@ -37,7 +37,7 @@ public class Ex3 {
         zeroTime = System.nanoTime();
 
         //parses the argument number
-        numberOfDoubles = Integer.valueOf(args[0]);
+//        numberOfDoubles = 500;
 
         //create Helper class instance
         Helper helper = new Helper();

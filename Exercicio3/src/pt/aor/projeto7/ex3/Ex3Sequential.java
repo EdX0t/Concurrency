@@ -11,7 +11,7 @@ package pt.aor.projeto7.ex3;
  */
 public class Ex3Sequential {
 
-    private static int numberOfDoubles;
+    private static final int numberOfDoubles = 500000;
     private static double[] listOfDoubles;
     private static long zeroTime, splitTime, sequentialTime;
 
@@ -20,7 +20,7 @@ public class Ex3Sequential {
         zeroTime = System.nanoTime();
         
         //creates the double array
-        numberOfDoubles = Integer.valueOf(args[0]);
+//        numberOfDoubles = 500;
         
         //creates instance of helper class
         Helper helper = new Helper();
@@ -41,7 +41,6 @@ public class Ex3Sequential {
                 min = listOfDoubles[i];
             }
         }
-        System.out.println("Minimum: " + min);
         //calculate maximum
         double max = listOfDoubles[0];
         for (int i = 1; i < listOfDoubles.length; i++) {
@@ -49,7 +48,7 @@ public class Ex3Sequential {
                 max = listOfDoubles[i];
             }
         }
-        System.out.println("Maximum: " + max);
+ 
 
         sequentialTime = (System.nanoTime() - zeroTime) / 1000;
         
