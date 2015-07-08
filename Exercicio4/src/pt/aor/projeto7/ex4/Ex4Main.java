@@ -60,7 +60,7 @@ public class Ex4Main {
             try {
                 Thread.sleep(sleepTime);
             } catch (InterruptedException ex) {
-                Logger.getLogger(Ex4Main.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Ex4Main.class.getName()).log(Level.SEVERE, "Thread was interrupted while sleeping.");
             }
         }
         executor.shutdown();
