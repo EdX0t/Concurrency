@@ -11,15 +11,49 @@ worker thread that is responsible for computing the result.
 
 package pt.aor.projeto7.ex4;
 
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Ed
  */
 public class Ex4Main {
+    
+    //thread number
+    private static final int numOfThreads = 10;
+    //queue size
+    private static final int queueSize = 8;
+    private static ArrayBlockingQueue<Double> arrayBqueue;
+    //task number
+    private static final int numOfTasks = 400;
 
     public static void main(String[] args){
-    
-    
+    //initialize ArrayBlockingQueue
+        arrayBqueue = new ArrayBlockingQueue<>(queueSize);
+        
+        //initialize new fixed size thread pool
+        ExecutorService executor = Executors.newFixedThreadPool(numOfThreads);
+       
+        //initialize the threads and submit to pool
+        for(int i = 0; i<numOfThreads; i++){
+        Runnable thread = new WorkerThread(arrayBqueue);
+        executor.submit(thread);
+        }
+        
+        //generates the numbers for computation by worker threads
+        for(int n = 0; n<numOfTasks; n++){
+            //generates value between 1 and 1000
+        Double value = Math.random()*(1000)+1;
+            try {
+                arrayBqueue.put(value);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Ex4Main.class.getName()).log(Level.SEVERE, "Error while putting the value in the queue - Master Thread was interrupted.");
+            }
+        }
     }
     
     
