@@ -28,7 +28,6 @@ public class Ex4Main {
     //task number
     private static final int numOfTasks = 50;
 
-    @SuppressWarnings("SleepWhileInLoop")
     public static void main(String[] args) {
         //initialize ArrayBlockingQueue
         arrayBqueue = new ArrayBlockingQueue<>(queueSize);
@@ -39,12 +38,12 @@ public class Ex4Main {
         //initialize Master thread and submit to pool
         Runnable master = new MasterThread(arrayBqueue, numOfTasks);
         executor.submit(master);
-         //initialize the worker threads and submit to pool
-        for (int i = 0; i < numOfThreads-1; i++) {
+        //initialize the worker threads and submit to pool
+        for (int i = 0; i < numOfThreads - 1; i++) {
             Runnable thread = new WorkerThread(arrayBqueue);
             executor.submit(thread);
         }
-     
+
         executor.shutdown();
     }
 

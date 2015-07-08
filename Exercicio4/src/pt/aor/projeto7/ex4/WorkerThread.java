@@ -19,14 +19,15 @@ public class WorkerThread implements Runnable {
 
     @Override
     public void run() {
-   
+
         while (true) {
             try {
                 //removes head of queue with 5 second timeout 
                 Double value = arrayQueue.poll(5, TimeUnit.SECONDS);
                 //breaks the cycle when the value taken is null
-                if(value==null)
+                if (value == null) {
                     break;
+                }
                 System.out.println("Thread number " + Thread.currentThread().getId() + " calculated sqrt of " + value);
                 System.out.println("Result: " + Math.sqrt(value));
 

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package pt.aor.projeto7.ex4;
 
 import java.util.concurrent.ArrayBlockingQueue;
@@ -14,20 +13,21 @@ import java.util.logging.Logger;
  *
  * @author Ed
  */
-public class MasterThread implements Runnable{
+public class MasterThread implements Runnable {
 
     private final ArrayBlockingQueue<Double> queue;
-     //task number
+    //task number
     private final int numOfTasks;
-    
-    public MasterThread(ArrayBlockingQueue queue, int numTasks){
+
+    public MasterThread(ArrayBlockingQueue queue, int numTasks) {
         this.queue = queue;
         this.numOfTasks = numTasks;
     }
 
     @Override
+    @SuppressWarnings("SleepWhileInLoop")
     public void run() {
-               //generates the numbers for computation by worker threads
+        //generates the numbers for computation by worker threads
         for (int n = 0; n < numOfTasks; n++) {
             //generates value between 1 and 1000
             Double value = Math.random() * (1000) + 1;
