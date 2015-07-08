@@ -56,6 +56,7 @@ public class Ex4Main {
                 Logger.getLogger(Ex4Main.class.getName()).log(Level.SEVERE, "Error while putting the value in the queue - Master Thread was interrupted.");
             }
             //thread sleeps for a random amount of time (lets consider 100 to 5000 ms)
+
             int sleepTime = (int) (Math.random()*(5001-100)+100);
             try {
                 Thread.sleep(sleepTime);
