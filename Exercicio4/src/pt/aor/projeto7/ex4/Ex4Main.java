@@ -55,15 +55,15 @@ public class Ex4Main {
             } catch (InterruptedException ex) {
                 Logger.getLogger(Ex4Main.class.getName()).log(Level.SEVERE, "Error while putting the value in the queue - Master Thread was interrupted.");
             }
-            //thread sleeps for a random amount of time (lets consider 100 to 5000 ms)
-
-            int sleepTime = (int) (Math.random()*(5001-100)+100);
+            //thread sleeps for a random amount of time (lets consider 100 to 2000 ms)
+            int sleepTime = (int) ((2001-100)*Math.random()+100);
             try {
                 Thread.sleep(sleepTime);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Ex4Main.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        executor.shutdown();
     }
     
     
