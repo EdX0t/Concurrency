@@ -1,6 +1,8 @@
 package pt.aor.projeto7.ex2;
 
 import java.util.concurrent.Semaphore;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -26,7 +28,8 @@ public class ThreadExercicio2 extends Thread {
             System.out.println(message);
 
         } catch (InterruptedException ie) {
-
+            Logger.getLogger(ThreadExercicio2.class.getName()).log(Level.SEVERE, 
+                    "Error while putting the value in the queue - Master Thread was interrupted.");
         } finally {
             //release the semaphore index by the order
             if ((index + 1) % 2 == 0) {
