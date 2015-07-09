@@ -24,8 +24,8 @@ public class Ex5Main {
     public static void main(String[] args) {
         
         Exchanger<Integer> exchanger = new Exchanger<>();
-        Thread t1 = new ThreadOne(exchanger);
-        Thread t2 = new ThreadTwo(exchanger);
+        Thread t1 = new ThreadOne(exchanger, "PING", 1);
+        Thread t2 = new ThreadOne(exchanger, "PONG", 0);
         t1.start();
         t2.start();
         
