@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pt.aor.projeto7.ex6;
+package pt.aor.projeto7.ex6.A;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;

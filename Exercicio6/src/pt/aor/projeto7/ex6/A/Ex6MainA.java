@@ -8,7 +8,7 @@
  before the other (single) thread signals them to start their cycle, using, again, the
  CountDownLatch class.
  */
-package pt.aor.projeto7.ex6;
+package pt.aor.projeto7.ex6.A;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.logging.Level;
