@@ -26,7 +26,7 @@ public class Ex4Main {
     private static final int queueSize = 8;
     private static ArrayBlockingQueue<Double> arrayBqueue;
     //task number
-    private static final int numOfTasks = 50;
+    private static final int numOfTasks = 20;
 
     public static void main(String[] args) {
         //initialize ArrayBlockingQueue

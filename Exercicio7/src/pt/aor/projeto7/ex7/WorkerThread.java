@@ -28,6 +28,7 @@ public class WorkerThread implements Runnable {
     }
 
     @Override
+    @SuppressWarnings("SleepWhileInLoop")
     public void run() {
         while (numberOfCycles > 0) {
             //increments list values by 1

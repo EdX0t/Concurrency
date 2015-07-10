@@ -5,7 +5,6 @@
  */
 package pt.aor.projeto7.ex6.A;
 
-import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
 import java.util.logging.Level;
 import java.util.logging.Logger;
